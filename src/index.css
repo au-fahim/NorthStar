@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Flow+Circular&family=Outfit:wght@300;400;500;600&display=swap");
+
+/* 
+  font-family: 'Flow Circular', cursive;
+  font-family: 'Outfit', sans-serif; 
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    @apply text-slate-900;
+  }
+
+  li > a {
+    @apply hover:text-orange-600;
+  }
+}
+
+@layer utilities {
+  .main-wrapper {
+    @apply w-11/12 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto;
+  }
+
+  .btn-icon {
+    @apply px-2 py-2 rounded-full cursor-pointer hover:bg-slate-50;
+  }
+
+  .icon {
+    @apply cursor-pointer text-slate-900 text-lg sm:text-2xl;
+  }
+
+  .icon-gray {
+    @apply text-gray-400 pointer-events-none;
+  }
+
+  .count-element {
+    @apply flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white px-1 aspect-square text-sm rounded-full;
+  }
+}
