@@ -1,8 +1,6 @@
 import { MdAddShoppingCart } from "react-icons/md";
 
-export default function ProductCard({ data, id }) {
-  console.log(data);
-
+export default function ProductCard({ data, id, onAddToCart }) {
   return (
     <div className="w-full cursor-pointer group">
       {/* Product Image */}
@@ -40,7 +38,9 @@ export default function ProductCard({ data, id }) {
           </div>
 
           {/* Add to cart Button */}
-          <button className="flex flex-row gap-2 px-4 py-2 items-center justify-between bg-orange-600 text-white rounded-md invisible group-hover:visible transition">
+          <button
+            onClick={onAddToCart}
+            className="flex flex-row gap-2 px-4 py-2 items-center justify-between bg-orange-600 text-white rounded-md invisible group-hover:visible transition">
             <MdAddShoppingCart /> Add to cart
           </button>
         </div>

@@ -1,9 +1,15 @@
+import { useContext } from "react";
 import { CiShoppingCart, CiUser, CiMenuBurger } from "react-icons/ci";
 
-import SearchBar from "../ui/Search_bar";
 import logo from "/North_Star.png";
+import SearchBar from "../ui/Search_bar";
+import { CartContext } from "../../context/CartContext";
 
 export default function Header(props) {
+  const cartData = useContext(CartContext);
+
+  const totalCartProducts = cartData.products.length;
+
   return (
     <div className="bg-white">
       <div className="main-wrapper">
@@ -50,9 +56,13 @@ export default function Header(props) {
                 className="btn-icon relative z-20">
                 <CiShoppingCart className="icon" />
                 {/* Total Items count box */}
-                {/* <div className="count-element">
-                  <span>9+</span>
-                </div> */}
+                {totalCartProducts > 0 && (
+                  <div className="count-element">
+                    <span>
+                      {totalCartProducts > 99 ? "99+" : totalCartProducts}
+                    </span>
+                  </div>
+                )}
               </button>
 
               {/* User Profile Button */}

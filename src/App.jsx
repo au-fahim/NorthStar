@@ -1,11 +1,11 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
+import { useState, useContext } from "react";
 
+// Custom Components
 import Header from "../components/layouts/Header";
 import MsgBanner from "../components/layouts/Msg_Banner";
 import Products from "../components/layouts/product/Products";
-import ModalOverlay from "../components/layouts/modal/Modal_Backdrop";
-import RightModal from "../components/layouts/modal/Right_Modal";
+import CartProvider from "../context/CartProvider";
+import Cart from "../components/layouts/cart/Cart";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -26,9 +26,9 @@ function App() {
   };
 
   return (
-    <>
+    <CartProvider>
       {/* Modal Show or Hide */}
-      {showModal && <RightModal onHideModal={hideModalFunc} />}
+      {showModal && <Cart onHideModal={hideModalFunc} />}
 
       {/* Top Banner */}
       <MsgBanner />
@@ -38,7 +38,7 @@ function App() {
 
       {/* All Products */}
       <Products />
-    </>
+    </CartProvider>
   );
 }
 

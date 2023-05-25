@@ -1,9 +1,19 @@
+import { useContext } from "react";
+
+import { CartContext } from "../../../context/CartContext";
 import { products } from "../../dummy_data/products";
 import ProductCard from "./ProductCard";
 
 export default function Products() {
+  const cartData = useContext(CartContext);
+
   const productData = products.map((product, index) => (
-    <ProductCard data={product} key={index} id={index} />
+    <ProductCard
+      data={product}
+      key={index}
+      id={index}
+      onAddToCart={() => cartData.addToCartFunc(product)}
+    />
   ));
 
   return (
