@@ -5,7 +5,7 @@ import { BsStars, BsMinecartLoaded, BsPersonAdd } from "react-icons/bs";
 import { CartContext } from "../../../context/CartContext";
 import CenterModal from "../modal/Center_Modal";
 
-export default function Cart({ onHideModal }) {
+export default function CartModal({ onHideModal }) {
   const cartData = useContext(CartContext);
   console.log(cartData.products);
 

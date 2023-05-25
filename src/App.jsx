@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 // Custom Components
 import Header from "../components/layouts/Header";
 import MsgBanner from "../components/layouts/Msg_Banner";
 import Products from "../components/layouts/product/Products";
 import CartProvider from "../context/CartProvider";
-import Cart from "../components/layouts/cart/Cart";
+import CartModal from "../components/layouts/cart/CartModal";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,7 @@ function App() {
   return (
     <CartProvider>
       {/* Modal Show or Hide */}
-      {showModal && <Cart onHideModal={hideModalFunc} />}
+      {showModal && <CartModal onHideModal={hideModalFunc} />}
 
       {/* Top Banner */}
       <MsgBanner />
