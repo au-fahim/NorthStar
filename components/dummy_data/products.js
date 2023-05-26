@@ -32,7 +32,7 @@ export const products = [
     oldPrice: 100,
   },
   {
-    id: 10,
+    id: 14,
     name: "Nike Sportswear Club Fleece",
     title: "Men's Monogram Hoodie",
     img: ["/products/p_2.5.png"],
@@ -40,7 +40,7 @@ export const products = [
     oldPrice: 100,
   },
   {
-    id: 11,
+    id: 15,
     name: "Nike Sportswear Club Fleece",
     title: "Men's Monogram Hoodie",
     img: ["/products/p_3.1.png", "/products/p_2.2.png"],
@@ -48,7 +48,7 @@ export const products = [
     oldPrice: 100,
   },
   {
-    id: 12,
+    id: 16,
     name: "Nike Sportswear Club Fleece",
     title: "Men's Monogram Hoodie",
     img: ["/products/p_3.2.png", "/products/p_2.2.png"],
@@ -56,7 +56,7 @@ export const products = [
     oldPrice: 100,
   },
   {
-    id: 13,
+    id: 17,
     name: "Nike Sportswear Club Fleece",
     title: "Men's Monogram Hoodie",
     img: ["/products/p_3.3.png", "/products/p_2.2.png"],

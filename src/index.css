@@ -33,7 +33,7 @@
 
   /* Button Style */
   .button {
-    @apply w-full py-2 px-4 text-center capitalize font-medium rounded;
+    @apply w-full py-3 px-4 text-center capitalize font-semibold rounded transition;
   }
 
   /* Button With Icon */
@@ -48,12 +48,12 @@
 
   /* Secondary Button - Without Background on border */
   .secondary-btn {
-    @apply border border-slate-900 transition hover:bg-slate-900 hover:text-white;
+    @apply border border-slate-900 transition hover:bg-gray-900 hover:text-white;
   }
 
   /* Icon Button Style */
   .btn-icon {
-    @apply px-2 py-2 rounded-full cursor-pointer hover:bg-slate-50;
+    @apply px-2 py-2 rounded-full cursor-pointer hover:bg-slate-100;
   }
 
   /* Icon Style */
@@ -68,5 +68,14 @@
   /* Show the total number `ex. total cart items number display` */
   .count-element {
     @apply w-6 h-6 flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white aspect-square text-sm rounded-full;
+  }
+
+  /* Product Size Select Element */
+  .product-size {
+    @apply list-none flex flex-row flex-wrap gap-2;
+  }
+
+  .product-size li {
+    @apply py-2 w-20 border rounded cursor-pointer text-center uppercase hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700 transition select-none;
   }
 }

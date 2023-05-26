@@ -14,6 +14,7 @@ export default function ProductCard({ data }) {
           src={data.img[0]}
           alt="Product_1"
           className="group-hover:scale-105 transition"
+          loading="lazy"
         />
       </div>
 
