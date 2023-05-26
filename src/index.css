@@ -26,19 +26,47 @@
     @apply w-11/12 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto;
   }
 
+  /* Total Cart Products Price Item */
+  .totalPricing--item {
+    @apply flex flex-row items-center justify-between;
+  }
+
+  /* Button Style */
+  .button {
+    @apply w-full py-2 px-4 text-center capitalize font-medium rounded;
+  }
+
+  /* Button With Icon */
+  .btn_with_icon {
+    @apply flex flex-row items-center justify-between;
+  }
+
+  /* Primary Button - With Background */
+  .primary-btn {
+    @apply bg-blue-500 text-white hover:bg-blue-700 transition;
+  }
+
+  /* Secondary Button - Without Background on border */
+  .secondary-btn {
+    @apply border border-slate-900 transition hover:bg-slate-900 hover:text-white;
+  }
+
+  /* Icon Button Style */
   .btn-icon {
     @apply px-2 py-2 rounded-full cursor-pointer hover:bg-slate-50;
   }
 
+  /* Icon Style */
   .icon {
-    @apply cursor-pointer text-slate-900 text-lg sm:text-2xl;
+    @apply cursor-pointer text-slate-900 text-lg md:text-2xl;
   }
 
   .icon-gray {
     @apply text-gray-400 pointer-events-none;
   }
 
+  /* Show the total number `ex. total cart items number display` */
   .count-element {
-    @apply flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white px-1 aspect-square text-sm rounded-full;
+    @apply w-6 h-6 flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white aspect-square text-sm rounded-full;
   }
 }

@@ -1,13 +1,18 @@
+import { useContext } from "react";
 import ReactDOM from "react-dom";
 
-export default function ModalBackdrop(props) {
+import { CartContext } from "../../../context/CartContext";
+
+export default function ModalBackdrop({ children }) {
+  const cartData = useContext(CartContext);
+
   return (
     <>
       {ReactDOM.createPortal(
         <section
-          onClick={props.onHideModal}
-          className="fixed w-screen h-screen bg-[#000000cc] z-40">
-          {props.children}
+          onClick={cartData.closeCartModal}
+          className="fixed top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] z-40">
+          {children}
         </section>,
         document.getElementById("modal")
       )}

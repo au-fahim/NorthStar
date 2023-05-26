@@ -1,43 +1,51 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
+import { useContext, useState } from "react";
 
+// Custom Components
 import Header from "../components/layouts/Header";
 import MsgBanner from "../components/layouts/Msg_Banner";
-import Products from "../components/layouts/product/Products";
-import ModalOverlay from "../components/layouts/modal/Modal_Backdrop";
-import RightModal from "../components/layouts/modal/Right_Modal";
+import HomeProducts from "../components/layouts/product/HomeProducts";
+import CartModal from "../components/layouts/cart/CartModal";
+import { CartContext } from "../context/CartContext";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
 
-  // Select the <html> Tag
+  // Store Context Data in cartData Veriable
+  const cartData = useContext(CartContext);
+
+  // Selecting the <html> Element
   const html = document.querySelector("html");
 
+  // Disable Scrolling in Root Div, When Cart Modal is Active on screen
+  cartData.isCartModalShow
+    ? (html.style.overflow = "hidden")
+    : (html.style.overflow = "scroll");
+
   // Modal Show Function
-  const showModalFunc = () => {
-    setShowModal(true);
-    html.style.overflow = "hidden";
-  };
+  // const showModalFunc = () => {
+  //   setShowModal(true);
+  //   html.style.overflow = "hidden";
+  // };
 
   // Modal Hide Function
-  const hideModalFunc = () => {
-    setShowModal(false);
-    html.style.overflow = "scroll";
-  };
+  // const hideModalFunc = () => {
+  //   setShowModal(false);
+  //   html.style.overflow = "scroll";
+  // };
 
   return (
     <>
       {/* Modal Show or Hide */}
-      {showModal && <RightModal onHideModal={hideModalFunc} />}
+      {cartData.isCartModalShow && <CartModal />}
 
-      {/* Top Banner */}
+      {/* Top Banner Component */}
       <MsgBanner />
 
-      {/* Top Header */}
-      <Header onShowModal={showModalFunc} />
+      {/* Top Header Component */}
+      <Header />
 
-      {/* All Products */}
-      <Products />
+      {/* All Products View Component */}
+      <HomeProducts />
     </>
   );
 }
