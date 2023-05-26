@@ -6,22 +6,31 @@ import { CartContext } from "./CartContext";
 const initialCartState = {
   products: [],
   totalPrice: 0,
+  lastAddedProduct: {},
+  isCartModalShow: false,
 };
 
 const cartReducer = (state, action) => {
   if (action.type === "add_to_cart") {
-    console.log(state);
-
     let updatedProducts = {
       ...state,
       products: [...state.products, action.product],
+      lastAddedProduct: action.product,
+      isCartModalShow: true,
     };
 
     return updatedProducts;
   }
+
+  if (action.type === "close_cart_modal") {
+    return {
+      ...state,
+      isCartModalShow: false,
+    };
+  }
 };
 
-// ░░░░░░░░░░░░░░░░░░░░░ CartProvider Component ░░░░░░░░░░░░░░░░░░░░░
+// ░░ ░░ ░░ ░░ ░░ ░░ ░░ CartProvider Component ░░ ░░ ░░ ░░ ░░ ░░ ░░
 
 export default function CartProvider({ children }) {
   const [cartState, dispatchCartAction] = useReducer(
@@ -39,10 +48,21 @@ export default function CartProvider({ children }) {
     dispatchCartAction({ type: "remove_from_cart", id });
   };
 
+  // ░░░░░░░░░░░░░░░ Function For Closing Cart Modal  ░░░░░░░░░░░░░░░░░░
+  const closeCartModal = () => {
+    dispatchCartAction({ type: "close_cart_modal" });
+  };
+
+  // ░░░░░░░░░░░░░░░ Distructure cartState ░░░░░░░░░░░░░░░
+  let { products, totalPrice, isCartModalShow, lastAddedProduct } = cartState;
+
   // ░░░░░░░░░░░░░░░ Cart Product Context Data ░░░░░░░░░░░░░░░
   const cartProduct = {
-    products: cartState.products,
-    totalPrice: cartState.totalPrice,
+    products,
+    totalPrice,
+    lastAddedProduct,
+    isCartModalShow,
+    closeCartModal,
     addToCartFunc,
     removeFromCartFunc,
   };

@@ -1,6 +1,11 @@
-import { MdAddShoppingCart } from "react-icons/md";
+import { useContext } from "react";
 
-export default function ProductCard({ data, id, onAddToCart }) {
+import { MdAddShoppingCart } from "react-icons/md";
+import { CartContext } from "../../../context/CartContext";
+
+export default function ProductCard({ data }) {
+  const cartData = useContext(CartContext);
+
   return (
     <div className="w-full cursor-pointer group">
       {/* Product Image */}
@@ -13,7 +18,7 @@ export default function ProductCard({ data, id, onAddToCart }) {
       </div>
 
       {/* Product Details */}
-      <div className="h-44 py-4 px-2 flex flex-col gap-2 group-hover:gap-4">
+      <div className="h-44 py-4 px-2 flex flex-col gap-2 ">
         {/* Product Name or Title */}
         <div>
           {/* Product Name */}
@@ -32,17 +37,15 @@ export default function ProductCard({ data, id, onAddToCart }) {
             <strong className="text-xl">${data.newPrice}</strong>
 
             {/* Product Old Price (If Have) */}
-            <span className="text-gray-500 line-through group-hover:hidden">
-              ${data.oldPrice}
-            </span>
+            <span className="text-gray-500 line-through">${data.oldPrice}</span>
           </div>
 
           {/* Add to cart Button */}
-          <button
-            onClick={onAddToCart}
+          {/* <button
+            onClick={() => cartData.addToCartFunc(data)}
             className="flex flex-row gap-2 px-4 py-2 items-center justify-between bg-orange-600 text-white rounded-md invisible group-hover:visible transition">
             <MdAddShoppingCart /> Add to cart
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

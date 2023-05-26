@@ -7,10 +7,12 @@ import CenterModal from "../modal/Center_Modal";
 
 export default function CartModal({ onHideModal }) {
   const cartData = useContext(CartContext);
-  console.log(cartData.products);
+
+  // Last Added Product in Cart
+  const { name, title, img, oldPrice, newPrice } = cartData.lastAddedProduct;
 
   return (
-    <CenterModal onHideModal={onHideModal}>
+    <CenterModal>
       {/* Successfull Added Product Modal */}
       <header className="flex flex-row items-center justify-between py-4 px-4 bg-white">
         <h1 className="text-2xl font-medium capitalize">
@@ -18,7 +20,7 @@ export default function CartModal({ onHideModal }) {
         </h1>
 
         {/* Modal Close Button */}
-        <button className="btn-icon" onClick={onHideModal}>
+        <button className="btn-icon" onClick={cartData.closeCartModal}>
           <IoCloseOutline className="icon" />
         </button>
       </header>
@@ -29,22 +31,20 @@ export default function CartModal({ onHideModal }) {
         <div className="grid grid-cols-1 pr-4 sticky top-0">
           <div className="w-32 h-32 rounded-md overflow-hidden">
             <img
-              src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/4863ccda96f24b1eb996af540093cfec_9366/HP7672_650_HP7672_01_standard.jpg.jpg?sh=364&strip=false&sw=364"
-              alt=""
+              src={img[0]}
+              alt="Product Image"
               className="object-cover w-full"
             />
           </div>
           <div className="flex flex-col">
-            <h1 className="line-clamp-1 font-medium">
-              Nike Sportswear Club Fleece
-            </h1>
+            <h1 className="line-clamp-1 font-medium">{name}</h1>
             <p className="py-1">
-              <span className="line-through text-gray-500">$35</span>{" "}
-              <strong className="text-red-600">$21</strong>
+              <span className="line-through text-gray-500">${oldPrice}</span>{" "}
+              <strong className="text-red-600">${newPrice}</strong>
             </p>
             <div className="text-sm">
               <p className="line-clamp-1">
-                Color: <span className="uppercase">Gray Size</span>
+                Color: <span className="uppercase">Gray</span>
               </p>
               <p>
                 Size: <span className="uppercase">XL</span>
@@ -56,20 +56,25 @@ export default function CartModal({ onHideModal }) {
 
         {/* Total Pricing Section */}
         <div className="pl-4 border-l">
-          <p className="font-light text-sm">3 Items in Your Bag</p>
+          <p className="font-light text-sm">
+            {cartData.products.length} Items in Your Bag
+          </p>
 
           {/* Price Details */}
           <div className="my-2">
             <p className="totalPricing--item">
-              <span>Total Product Cost: </span> <span>$280.00</span>
+              <span>Total Product Cost: </span>
+              <span>${cartData.totalPrice}</span>
             </p>
+
             <p className="totalPricing--item">
-              <span>Total Delivery Cost: </span> <span>Free</span>
+              <span>Total Delivery Cost: </span>
+              <span>Free</span>
             </p>
 
             {/* Total Price */}
             <strong className="totalPricing--item py-1 border-t border-slate-900">
-              <span>Total: </span> <span>$280.00</span>
+              <span>Total: </span> <span>${cartData.totalPrice}</span>
             </strong>
           </div>
 

@@ -58,7 +58,7 @@
 
   /* Icon Style */
   .icon {
-    @apply cursor-pointer text-slate-900 text-lg sm:text-2xl;
+    @apply cursor-pointer text-slate-900 text-lg md:text-2xl;
   }
 
   .icon-gray {
@@ -67,6 +67,6 @@
 
   /* Show the total number `ex. total cart items number display` */
   .count-element {
-    @apply flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white px-1 aspect-square text-sm rounded-full;
+    @apply w-6 h-6 flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white aspect-square text-sm rounded-full;
   }
 }

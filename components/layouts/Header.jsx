@@ -45,7 +45,7 @@ export default function Header(props) {
             </ul>
           </nav>
           {/* Header - Search, Cart & User Profile */}
-          <div className="flex flex-row gap-0 sm:gap-2 xl:gap-8 items-center">
+          <div className="flex flex-row gap-0 sm:gap-2 items-center">
             {/* Search Component */}
             <SearchBar />
 
@@ -59,7 +59,11 @@ export default function Header(props) {
                 {totalCartProducts > 0 && (
                   <div className="count-element">
                     <span>
-                      {totalCartProducts > 99 ? "99+" : totalCartProducts}
+                      {totalCartProducts < 10
+                        ? `0${totalCartProducts}`
+                        : totalCartProducts > 99
+                        ? "99+"
+                        : totalCartProducts}
                     </span>
                   </div>
                 )}
