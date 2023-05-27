@@ -13,17 +13,20 @@ export default function SingleProduct() {
   // Gatting the clicked product data
   const product = products.filter((item) => item.id === +id);
 
-  const { name, title, newPrice, oldPrice, img } = product[0];
+  const { productName, productTitle, images, salePrice, regularPrice } =
+    product[0];
 
   // Render All Product Images
-  const productImages = img.map((singleImg, index) => (
+  const productImages = images.map((singleImg, index) => (
     <div className="cursor-crosshair" key={index}>
       <img src={singleImg} alt="Product Image" />
     </div>
   ));
 
-  const html = document.querySelector("html");
-  // html.style.overflow = "hidden";
+  // Add to Cart Function
+  const addToCartFunc = () => {
+    return cartData.addToCartFunc({ ...product[0], quantity: 1 });
+  };
 
   return (
     <>
@@ -38,22 +41,22 @@ export default function SingleProduct() {
         <section className="flex flex-col gap-6 px-6 py-6 sticky top-0  h-max">
           {/* Product Name, Price, Short-Desc */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl font-semibold">{name}</h1>
+            <h1 className="text-3xl font-semibold">{productName}</h1>
             <p className="text-xl">
               <span className="line-through pr-2 text-gray-400">
-                {oldPrice}
+                {regularPrice}
               </span>
-              <strong className="font-semibold">${newPrice}</strong>
+              <strong className="font-semibold">${salePrice}</strong>
             </p>
           </div>
 
           {/* Product Available Color Option */}
           <div className="flex flex-col gap-3">
-            <strong>{img.length} colors available</strong>
+            <strong>{images.length} colors available</strong>
 
             {/* Available color button */}
             <div className="flex flex-row flex-wrap gap-2">
-              {img.map((item, index) => (
+              {images.map((item, index) => (
                 <div
                   key={index}
                   className="h-16 w-16 cursor-pointer overflow-hidden border rounded hover:border-slate-300 active:scale-95 active:border-slate-900 select-none transition">
@@ -80,7 +83,7 @@ export default function SingleProduct() {
           {/* Add To Cart Button */}
           <div className="flex flex-row justify-between gap-2 my-3">
             <button
-              onClick={() => cartData.addToCartFunc(product[0])}
+              onClick={addToCartFunc}
               className="button btn_with_icon group bg-slate-900 text-white hover:text-slate-700 active:scale-95 border hover:bg-slate-100 hover:border-slate-300 active:border-slate-700">
               <span>Add to Cart</span>
               <BiCartAdd className="icon fill-white group-hover:fill-slate-700" />

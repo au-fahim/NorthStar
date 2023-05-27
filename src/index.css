@@ -43,7 +43,7 @@
 
   /* Primary Button - With Background */
   .primary-btn {
-    @apply bg-blue-500 text-white hover:bg-blue-700 transition;
+    @apply bg-orange-600 text-white hover:bg-orange-700 transition;
   }
 
   /* Secondary Button - Without Background on border */

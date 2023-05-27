@@ -1,10 +1,13 @@
-export default function ProductCard({ data }) {
+export default function ProductCard({ productData }) {
+  const { productName, productTitle, images, salePrice, regularPrice } =
+    productData;
+
   return (
     <div className="w-full cursor-pointer group">
       {/* Product Image */}
       <div className="w-full object-cover rounded-md overflow-hidden">
         <img
-          src={data.img[0]}
+          src={images[0]}
           alt="Product_1"
           className="group-hover:scale-105 transition"
           loading="lazy"
@@ -16,10 +19,10 @@ export default function ProductCard({ data }) {
         {/* Product Name or Title */}
         <div>
           {/* Product Name */}
-          <h1 className="text-xl line-clamp-2">{data.name}</h1>
+          <h1 className="text-xl line-clamp-2">{productName}</h1>
 
           {/* Product Category */}
-          <h4 className="font-light line-clamp-1">{data.title}</h4>
+          <h4 className="font-light line-clamp-1">{productTitle}</h4>
         </div>
 
         {/* Select Product Category */}
@@ -28,10 +31,10 @@ export default function ProductCard({ data }) {
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-2">
             {/* Product New Price */}
-            <strong className="text-xl">${data.newPrice}</strong>
+            <strong className="text-xl">${salePrice}</strong>
 
             {/* Product Old Price (If Have) */}
-            <span className="text-gray-500 line-through">${data.oldPrice}</span>
+            <span className="text-gray-400 line-through">${regularPrice}</span>
           </div>
 
           {/* Add to cart Button */}

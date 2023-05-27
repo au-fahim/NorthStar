@@ -10,7 +10,12 @@ import { Link } from "react-router-dom";
 export default function Header(props) {
   const cartData = useContext(CartContext);
 
-  const totalCartProducts = cartData.products.length;
+  const numberOfCartItems = cartData?.products?.reduce(
+    (currentQuantity, product) => {
+      return currentQuantity + product.quantity;
+    },
+    0
+  );
 
   return (
     <div className="bg-white border-b z-50">
@@ -45,14 +50,14 @@ export default function Header(props) {
                   className="btn-icon relative z-20">
                   <CiShoppingCart className="icon" />
                   {/* Total Items count box */}
-                  {totalCartProducts > 0 && (
+                  {numberOfCartItems > 0 && (
                     <div className="count-element">
                       <span>
-                        {totalCartProducts < 10
-                          ? `0${totalCartProducts}`
-                          : totalCartProducts > 99
+                        {numberOfCartItems < 10
+                          ? `0${numberOfCartItems}`
+                          : numberOfCartItems > 99
                           ? "99+"
-                          : totalCartProducts}
+                          : numberOfCartItems}
                       </span>
                     </div>
                   )}

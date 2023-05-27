@@ -5,8 +5,10 @@ import CartItem from "../../components/layouts/cart/CartItem";
 export default function Cart() {
   const cartData = useContext(CartContext);
 
-  const cartItems = cartData?.products?.map((product, index) => (
-    <CartItem key={index} cartData={product} />
+  const { products, totalSalePrice } = cartData;
+
+  const cartItems = products?.map((product, index) => (
+    <CartItem key={index} product={product} />
   ));
 
   return (
@@ -17,8 +19,8 @@ export default function Cart() {
             <h1 className="text-4xl font-bold uppercase">your cart</h1>
             <div className="flex flex-col gap-2">
               <p>
-                <span className="uppercase">TOTAL:</span> (18 items){" "}
-                <strong>$934</strong>
+                <span className="uppercase">TOTAL:</span> ({products?.length}{" "}
+                items) <strong>${totalSalePrice}</strong>
               </p>
               <p className="font-light">
                 Items in your bag are not reserved — check out now to make them

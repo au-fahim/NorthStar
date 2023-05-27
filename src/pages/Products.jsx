@@ -6,7 +6,7 @@ import ProductCard from "../../components/layouts/product/ProductCard";
 export default function Products() {
   const productData = products.map((product, index) => (
     <Link to={`/products/${product.id}`} key={index}>
-      <ProductCard data={product} id={index} />
+      <ProductCard productData={product} id={index} />
     </Link>
   ));
 
