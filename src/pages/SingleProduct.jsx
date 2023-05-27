@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
-import { CiHeart } from "react-icons/ci";
 
 import { products } from "../../components/dummy_data/products";
+import { CartContext } from "../../context/CartContext";
 
 export default function SingleProduct() {
+  const cartData = useContext(CartContext);
+
   const { id } = useParams();
 
   // Gatting the clicked product data
@@ -50,8 +53,10 @@ export default function SingleProduct() {
 
             {/* Available color button */}
             <div className="flex flex-row flex-wrap gap-2">
-              {img.map((item) => (
-                <div className="h-16 w-16 cursor-pointer overflow-hidden border rounded hover:border-slate-300 active:scale-95 active:border active:border-slate-700 select-none transition">
+              {img.map((item, index) => (
+                <div
+                  key={index}
+                  className="h-16 w-16 cursor-pointer overflow-hidden border rounded hover:border-slate-300 active:scale-95 active:border-slate-900 select-none transition">
                   <img src={item} alt="Product Image" className="select-none" />
                 </div>
               ))}
@@ -71,16 +76,22 @@ export default function SingleProduct() {
           </div>
 
           {/* Add to Cart & Add Favourit Button */}
+
+          {/* Add To Cart Button */}
           <div className="flex flex-row justify-between gap-2 my-3">
-            <button className="button btn_with_icon group bg-slate-900 text-white hover:text-slate-700 active:scale-95 border hover:bg-slate-100 hover:border-slate-300 active:border-slate-700">
+            <button
+              onClick={() => cartData.addToCartFunc(product[0])}
+              className="button btn_with_icon group bg-slate-900 text-white hover:text-slate-700 active:scale-95 border hover:bg-slate-100 hover:border-slate-300 active:border-slate-700">
               <span>Add to Cart</span>
               <BiCartAdd className="icon fill-white group-hover:fill-slate-700" />
             </button>
 
+            {/* Add To Wishlist Button */}
             <button className="button btn_with_icon group text-slate-700 border hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700">
               <span>Add to Wishlist</span>
               <BiHeart className="icon fill-slate-700" />
             </button>
+
             {/* <button className="py-3 px-3 rounded border border-gray-900">
               <CiHeart className="icon" />
             </button> */}

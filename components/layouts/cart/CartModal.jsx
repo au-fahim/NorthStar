@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { BsStars, BsMinecartLoaded, BsPersonAdd } from "react-icons/bs";
 
 import { CartContext } from "../../../context/CartContext";
-import CenterModal from "../modal/Center_Modal";
+import CenterModal from "../modal/CenterModal";
 
 export default function CartModal({ onHideModal }) {
   const cartData = useContext(CartContext);
@@ -83,14 +84,18 @@ export default function CartModal({ onHideModal }) {
             <strong className="text-blue-500 flex flex-row items-center gap-2 my-2">
               <BsStars /> Members get unlimited free shipping
             </strong>
+
             <button className="button primary-btn btn_with_icon">
-              <span>join for free </span>{" "}
+              <span>join for free </span>
               <BsPersonAdd className="icon fill-white" />
             </button>
-            <button className="button secondary-btn btn_with_icon group">
-              <span>view cart</span>{" "}
-              <BsMinecartLoaded className="icon fill-slate-900 group-hover:fill-white" />
-            </button>
+
+            <Link to="/cart" onClick={cartData.closeCartModal}>
+              <button className="button secondary-btn btn_with_icon group">
+                <span>view cart</span>
+                <BsMinecartLoaded className="icon fill-slate-900 group-hover:fill-white" />
+              </button>
+            </Link>
           </div>
         </div>
       </section>
