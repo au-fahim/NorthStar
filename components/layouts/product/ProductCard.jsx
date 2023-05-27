@@ -1,11 +1,4 @@
-import { useContext } from "react";
-
-import { MdAddShoppingCart } from "react-icons/md";
-import { CartContext } from "../../../context/CartContext";
-
 export default function ProductCard({ data }) {
-  const cartData = useContext(CartContext);
-
   return (
     <div className="w-full cursor-pointer group">
       {/* Product Image */}
@@ -14,6 +7,7 @@ export default function ProductCard({ data }) {
           src={data.img[0]}
           alt="Product_1"
           className="group-hover:scale-105 transition"
+          loading="lazy"
         />
       </div>
 
