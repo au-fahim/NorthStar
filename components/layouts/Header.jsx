@@ -10,16 +10,21 @@ import { Link } from "react-router-dom";
 export default function Header(props) {
   const cartData = useContext(CartContext);
 
-  const totalCartProducts = cartData.products.length;
+  const numberOfCartItems = cartData?.products?.reduce(
+    (currentQuantity, product) => {
+      return currentQuantity + product.quantity;
+    },
+    0
+  );
 
   return (
-    <div className="bg-white border-b z-50">
+    <div className="bg-white z-50">
       <div className="main-wrapper">
         <header className="mx-auto py-4 sm:py-6 flex flex-row justify-between items-center">
           {/* Logo & Left Menu Button */}
           <div className="flex flex-row gap-2 md:gap-3 items-center">
             {/* Left Menu */}
-            <button className="btn-icon xl:hidden">
+            <button className="btn-icon lg:hidden">
               <CiMenuBurger className="icon" />
             </button>
 
@@ -45,14 +50,14 @@ export default function Header(props) {
                   className="btn-icon relative z-20">
                   <CiShoppingCart className="icon" />
                   {/* Total Items count box */}
-                  {totalCartProducts > 0 && (
-                    <div className="count-element">
+                  {numberOfCartItems > 0 && (
+                    <div className="count-totalRecord">
                       <span>
-                        {totalCartProducts < 10
-                          ? `0${totalCartProducts}`
-                          : totalCartProducts > 99
+                        {numberOfCartItems < 10
+                          ? `0${numberOfCartItems}`
+                          : numberOfCartItems > 99
                           ? "99+"
-                          : totalCartProducts}
+                          : numberOfCartItems}
                       </span>
                     </div>
                   )}
