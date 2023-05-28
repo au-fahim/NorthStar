@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="py-2 md:py-6 text-xs md:text-base mx-auto">
+          <div className="py-3 md:py-6 text-xs md:text-base mx-auto">
             <p>Copyright &copy;2023 North Star. All right reserved</p>
           </div>
         </div>
