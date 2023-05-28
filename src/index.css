@@ -76,16 +76,16 @@
   }
 
   /* Show the total number `ex. total cart items number display` */
-  .count-element {
-    @apply w-6 h-6 flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white aspect-square text-sm rounded-full;
+  .count-totalRecord {
+    @apply w-5 h-5 md:w-6 md:h-6 flex items-center justify-center absolute -right-1 -top-1 bg-orange-600 text-white aspect-square text-xs md:text-sm rounded-full;
   }
 
   /* Product Size Select Element */
-  .product-size {
-    @apply list-none flex flex-row flex-wrap gap-2;
+  .productSize--btn {
+    @apply list-none grid grid-cols-4 sm:grid-cols-6 md:grid-cols-4 gap-2;
   }
 
-  .product-size li {
-    @apply py-2 w-20 border rounded cursor-pointer text-center uppercase hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700 transition select-none;
+  .productSize--btn > li {
+    @apply py-1 md:py-2 w-full border rounded cursor-pointer text-center uppercase hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700 transition select-none;
   }
 }

@@ -1,11 +1,10 @@
 import { Link, Route, Routes } from "react-router-dom";
-import App from "../../src/pages/App";
 
 export default function Nav() {
   return (
     <>
       <nav>
-        <ul className="hidden xl:flex flex-row gap-6">
+        <ul className="hidden lg:flex flex-row gap-6">
           <li>
             <Link to="/">Shop</Link>
           </li>

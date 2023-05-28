@@ -24,7 +24,7 @@ export default function Header(props) {
           {/* Logo & Left Menu Button */}
           <div className="flex flex-row gap-2 md:gap-3 items-center">
             {/* Left Menu */}
-            <button className="btn-icon xl:hidden">
+            <button className="btn-icon lg:hidden">
               <CiMenuBurger className="icon" />
             </button>
 
@@ -51,7 +51,7 @@ export default function Header(props) {
                   <CiShoppingCart className="icon" />
                   {/* Total Items count box */}
                   {numberOfCartItems > 0 && (
-                    <div className="count-element">
+                    <div className="count-totalRecord">
                       <span>
                         {numberOfCartItems < 10
                           ? `0${numberOfCartItems}`
