@@ -30,9 +30,9 @@ export default function SingleProduct() {
 
   return (
     <>
-      <section className="grid grid-cols-3 border-b">
+      <section className="mx-auto grid grid-cols-2 xl:grid-cols-3 border-b">
         {/* Section for Image, Review, Discription, Details, Others About Product Details */}
-        <section className="col-span-2 border-r">
+        <section className="col-span-1 xl:col-span-2 border-r">
           {/* Product Image GALLARY */}
           <div className="grid grid-cols-2 gap-1">{productImages}</div>
         </section>

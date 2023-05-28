@@ -15,26 +15,37 @@ export default function ProductCard({ productData }) {
       </div>
 
       {/* Product Details */}
-      <div className="h-44 py-4 px-2 flex flex-col gap-2 ">
+      <div className="h-36 py-3 px-2 flex flex-col gap-2">
         {/* Product Name or Title */}
         <div>
           {/* Product Name */}
-          <h1 className="text-xl line-clamp-2">{productName}</h1>
+          <h1 className="text-base sm:text-xl line-clamp-2">{productName}</h1>
 
           {/* Product Category */}
-          <h4 className="font-light line-clamp-1">{productTitle}</h4>
+          <h4 className="text-sm sm:text-base font-light line-clamp-1">
+            {productTitle}
+          </h4>
         </div>
 
-        {/* Select Product Category */}
+        {/* Select Product Color */}
 
         {/* Product Price & Add to Cart Button */}
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-2">
             {/* Product New Price */}
-            <strong className="text-xl">${salePrice}</strong>
+            <strong className="text-base sm:text-xl">${salePrice}</strong>
 
             {/* Product Old Price (If Have) */}
-            <span className="text-gray-400 line-through">${regularPrice}</span>
+            <span className="text-sm sm:text-base text-gray-400 line-through">
+              ${regularPrice}
+            </span>
+          </div>
+
+          {/* Discount Parcantage */}
+          <div>
+            <span className="hidden sm:group-hover:block bg-red-100 px-2 text-sm rounded-full text-red-500 font-medium">
+              {parseInt(((regularPrice - salePrice) / regularPrice) * 100)}% Off
+            </span>
           </div>
 
           {/* Add to cart Button */}

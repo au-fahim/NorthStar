@@ -23,7 +23,17 @@
 
 @layer utilities {
   .main-wrapper {
-    @apply w-11/12 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto;
+    @apply w-11/12 sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto;
+  }
+
+  /* Home Hero Banner Button Style */
+  .heroBanner--btn {
+    @apply absolute left-0 bottom-6 md:bottom-10 lg:bottom-20 py-2 px-4 lg:py-3 lg:px-6 text-xs sm:text-base md:text-lg lg:text-xl bg-white text-slate-900 font-normal md:font-medium rounded-r uppercase flex flex-row gap-2 items-center;
+  }
+
+  /* Home Slider Control Button */
+  .homeSlider--btn {
+    @apply hidden sm:flex items-center justify-center absolute top-6 lg:top-8 w-10 h-10 bg-white text-gray-400 hover:text-gray-800 cursor-pointer z-10 transition-all shadow-md;
   }
 
   /* Total Cart Products Price Item */

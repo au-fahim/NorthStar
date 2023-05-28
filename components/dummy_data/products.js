@@ -12,8 +12,8 @@ export const products = [
     productName: "Nike Sportswear Club Fleece",
     productTitle: "Men's Monogram Hoodie",
     images: ["/products/p_2.2.png", "/products/p_2.2.png"],
-    salePrice: 80,
-    regularPrice: 100,
+    salePrice: 443,
+    regularPrice: 555,
   },
   {
     id: 12,

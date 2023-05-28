@@ -18,7 +18,7 @@ export default function Header(props) {
   );
 
   return (
-    <div className="bg-white border-b z-50">
+    <div className="bg-white z-50">
       <div className="main-wrapper">
         <header className="mx-auto py-4 sm:py-6 flex flex-row justify-between items-center">
           {/* Logo & Left Menu Button */}
