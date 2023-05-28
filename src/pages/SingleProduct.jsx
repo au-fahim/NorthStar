@@ -50,7 +50,7 @@ export default function SingleProduct() {
 
   return (
     <div className="main-wrapper">
-      <section className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-5 xl:grid-cols-3 border-b">
+      <section className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-5 xl:grid-cols-3 border-b mb-10">
         {/* Section for Image, Review, Discription, Details, Others About Product Details */}
         <section className="md:col-span-4 lg:col-span-3 xl:col-span-2 border-r">
           {/* Product Image GALLARY */}

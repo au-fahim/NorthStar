@@ -12,6 +12,7 @@ import Home from "./Home";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
+import Footer from "../../components/layouts/Footer";
 
 function App() {
   // Store Context Data in cartData Veriable
@@ -43,6 +44,9 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
+
+      {/* Footer Component */}
+      <Footer />
     </>
   );
 }
