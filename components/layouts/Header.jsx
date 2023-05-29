@@ -1,14 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CiShoppingCart, CiUser, CiMenuBurger } from "react-icons/ci";
 
+import Nav from "./Nav";
 import logo from "/North_Star.png";
 import SearchBar from "../ui/Search_bar";
 import { CartContext } from "../../context/CartContext";
-import Nav from "./Nav";
-import { Link } from "react-router-dom";
 
 export default function Header(props) {
+  const [showHeader, setShowHeader] = useState("translate-y-0");
+  const [lastScrollY, setLastScrollY] = useState(0);
   const cartData = useContext(CartContext);
+
+  const headerControl = () => {
+    if (window.scrollY > 100) {
+      if (window.scrollY >= lastScrollY) {
+        setShowHeader("-translate-y-[88px]");
+      } else {
+        setShowHeader("shadow-sm border-b translate-y-0");
+      }
+    } else {
+      setShowHeader("translate-y-0");
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", headerControl);
+    return () => {
+      window.removeEventListener("scroll", headerControl);
+    };
+  }, [lastScrollY]);
 
   const numberOfCartItems = cartData?.products?.reduce(
     (currentQuantity, product) => {
@@ -18,9 +40,10 @@ export default function Header(props) {
   );
 
   return (
-    <div className="bg-white z-50">
+    <header
+      className={`w-full py-2 sm:py-6 bg-white z-20 sticky top-0 transition-transform duration-300 ${showHeader}`}>
       <div className="main-wrapper">
-        <header className="mx-auto py-4 sm:py-6 flex flex-row justify-between items-center">
+        <header className="flex flex-row justify-between items-center">
           {/* Logo & Left Menu Button */}
           <div className="flex flex-row gap-2 md:gap-3 items-center">
             {/* Left Menu */}
@@ -72,6 +95,6 @@ export default function Header(props) {
           </div>
         </header>
       </div>
-    </div>
+    </header>
   );
 }
