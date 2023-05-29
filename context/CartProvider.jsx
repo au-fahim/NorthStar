@@ -1,8 +1,9 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 import { CartContext } from "./CartContext";
+import { useLocation } from "react-router-dom";
 
-// ░░░░░░░░░░░░░░░░░░░░░ Initial Cart Products ░░░░░░░░░░░░░░░░░░░░░
+// ░░░░░░░░░░░░░░░░░░░░░ Initial Cart Products State ░░░░░░░░░░░░░░░░░░░░░
 const initialCartState = {
   products: [],
   totalVat: 0,
@@ -18,7 +19,9 @@ const cartReducer = (state, action) => {
     let updatedTotalSalePrice =
       state.totalSalePrice + action.product.salePrice * action.product.quantity;
 
-    // Selecting Existing Cart Product :: <if user selected product is Already have in the Cart>
+    /* :: Select Existing Cart Product :: 
+        <> if user selected product is Already have in the Cart */
+
     const existingProductIndex = state.products.findIndex(
       (product) => product.id === action.product.id
     );
@@ -26,15 +29,21 @@ const cartReducer = (state, action) => {
 
     let updatedProducts;
 
-    // If User Selected Product is Already have in the Cart, Then Update The Quantity of the Product
+    /* :: If `User Given` Product is Already have in the Cart, ::
+        <> Then, Update The Quantity of the Product. 
+        <> Else, Add the `Given Product` To the Products State */
+
     if (existingProduct) {
+      // :: Updating the product quantity ::
       const updatedProduct = {
         ...existingProduct,
         quantity: existingProduct.quantity + action.product.quantity,
       };
 
+      // :: Store available Cart Items --> in `updateProducts` variable ::
       updatedProducts = [...state.products];
 
+      // :: Update the `Quantity Updated Product` --> from Products State ::
       updatedProducts[existingProductIndex] = updatedProduct;
     } else {
       updatedProducts = state.products.concat(action.product);
@@ -49,7 +58,7 @@ const cartReducer = (state, action) => {
   }
 
   if (action.type === "remove_from_cart") {
-    // Selecting Existing Cart Product :: <if user selected product is Already have in the Cart>
+    // :: Selecting Existing Cart Product ::
     const existingProductIndex = state.products.findIndex(
       (product) => product.id === action.id
     );
@@ -62,7 +71,7 @@ const cartReducer = (state, action) => {
     const existingProductPrice =
       existingProduct.salePrice * existingProduct.quantity;
 
-    // Update The Total Sale Price
+    // :: Update The Total Sale Price ::
     const updatedTotalSalePrice = state.totalSalePrice - existingProductPrice;
 
     return {
@@ -81,9 +90,15 @@ const cartReducer = (state, action) => {
   return initialCartState;
 };
 
-// ░░ ░░ ░░ ░░ ░░ ░░ ░░ CartProvider Component ░░ ░░ ░░ ░░ ░░ ░░ ░░ ⁐
+// ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ CartProvider Component ░ ░ ░ ░ ░ ░ ░ ░ ░ ░
 
 export default function CartProvider({ children }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     initialCartState
@@ -104,11 +119,21 @@ export default function CartProvider({ children }) {
     dispatchCartAction({ type: "close_cart_modal" });
   };
 
-  // Destructuring >>> cartState <<<
+  // :: Destructuring --> `cartState` ::
   let { products, totalSalePrice, isCartModalShow, lastAddedProduct } =
     cartState;
 
-  // Cart Product Context Data
+  /* :: Disable Scrolling in Root Div :: 
+      <> When Cart Modal is Active on screen */
+
+  // :: Selecting the <html> Element ::
+  const html = document.querySelector("html");
+
+  isCartModalShow
+    ? (html.style.overflow = "hidden")
+    : (html.style.overflowY = "auto");
+
+  // :: Cart Product Context Data ::
   const cartProduct = {
     products,
     totalVat: 0,

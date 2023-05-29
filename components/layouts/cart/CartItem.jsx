@@ -26,44 +26,48 @@ export default function CartItem({ product }) {
       <div className="flex flex-row border rounded hover:border-slate-400 overflow-hidden transition group">
         {/* Product Image */}
         <Link to={`/products/${id}`}>
-          <img src={images[0]} alt="" className="w-60" />
+          <img src={images[0]} alt="" className="w-24 md:w-48" />
         </Link>
 
         {/* Product Details */}
-        <div className="w-3/4 py-4 px-4 ml-4 flex flex-col justify-between">
+        <div className="w-4/5 py-2 md:py-4 px-1 md:px-4 ml-2 flex flex-col justify-between">
           {/* Product Name & Close Button */}
-          <div className="w-full flex flex-row gap-2 justify-between">
-            <div className="flex flex-col gap-2 py-2">
+          <div className="w-full flex flex-row gap-1 xl:gap-2 justify-between">
+            <div className="flex flex-col md:gap-2 md:py-2 ">
               {/* Product Name */}
               <Link
                 to={`/products/${id}`}
-                className="text-xl font-medium line-clamp-1 uppercase hover:underline">
+                className="text-sm md:text-xl line-clamp-1 md:uppercase hover:underline">
                 {productName}
               </Link>
 
               {/* product Color */}
-              <p className="line-clamp-1 font-light uppercase">
+              {/* <p className="line-clamp-1 font-light uppercase">
                 {productTitle}
-              </p>
+              </p> */}
 
               {/* Product Size */}
-              <p className="py-2">SIZE: 10 (US Men)</p>
+              <p className="text-xs md:text-base py-1 xl:py-2 text-gray-500">
+                SIZE: 10 (US Men)
+              </p>
             </div>
 
             {/* Close From Cart Item List */}
-            <div className="hidden group-hover:flex flex-col gap-1">
-              <button onClick={removeFromCartFunc} className="btn-icon">
+            <div className="hidden group-hover:flex flex-row-reverse md:flex-col md:gap-1">
+              <button
+                onClick={removeFromCartFunc}
+                className="btn-icon w-8 h-8 md:w-auto md:h-auto flex items-center justify-center">
                 <IoCloseOutline className="icon" />
               </button>
 
-              <button className="btn-icon">
+              <button className="btn-icon w-8 h-8 md:w-auto md:h-auto flex items-center justify-center">
                 <IoHeartOutline className="icon" />
               </button>
             </div>
           </div>
 
           {/* Select Quantity & Price */}
-          <div className="flex flex-row justify-between items-center py-2">
+          <div className="flex flex-row justify-between items-center md:py-2 text-xs md:text-base">
             <div className="flex flex-row gap-1 items-end">
               <p>Quantity:</p>
               <select className="min-w-max" value={quantity}>
@@ -78,16 +82,18 @@ export default function CartItem({ product }) {
             </div>
 
             {/* Product Price */}
-            <p className="mr-2 text-lg">
-              <span className="text-gray-400 font-light">
+            <p className="mr-2">
+              <span className="text-gray-400 font-light text-xs md:text-base lg:text-lg">
                 <span className="group-hover:hidden line-through">
-                  ${regularPrice}
+                  ${regularPrice * quantity}
                 </span>{" "}
                 <span className="hidden group-hover:inline-block">
-                  ${salePrice} &#10005; {quantity} &#10170;
+                  (${salePrice} x {quantity})
                 </span>{" "}
               </span>
-              <strong>${salePrice * quantity}</strong>
+              <strong className="text-xs sm:text-base md:text-lg lg:text-xl">
+                ${salePrice * quantity}
+              </strong>
             </p>
           </div>
         </div>
