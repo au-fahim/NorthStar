@@ -43,7 +43,7 @@
 
   /* Button Style */
   .button {
-    @apply w-full py-3 px-4 text-center capitalize font-semibold rounded transition;
+    @apply w-full py-3 px-4 text-center font-semibold rounded transition;
   }
 
   /* Button With Icon */
@@ -87,6 +87,15 @@
 
   .productSize--btn > li {
     @apply py-1 md:py-2 w-full border rounded cursor-pointer text-center uppercase hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700 transition select-none;
+  }
+
+  /* ORDER SUMMERY LIST */
+  .orderSummery--list {
+    @apply py-2 md:py-4 flex flex-col gap-1 border-b;
+  }
+
+  .orderSummery--list > li {
+    @apply flex flex-row justify-between items-center font-light md:font-normal;
   }
 
   /* Footer Section */

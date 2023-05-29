@@ -18,14 +18,6 @@ function App() {
   // Store Context Data in cartData Veriable
   const cartData = useContext(CartContext);
 
-  // Selecting the <html> Element
-  const html = document.querySelector("html");
-
-  // Disable Scrolling in Root Div, When Cart Modal is Active on screen
-  cartData.isCartModalShow
-    ? (html.style.overflow = "hidden")
-    : (html.style.overflowY = "auto");
-
   return (
     <>
       {/* Modal Show or Hide */}
@@ -41,7 +33,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
 

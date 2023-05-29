@@ -52,6 +52,8 @@ export default function SingleProduct() {
     <div className="main-wrapper">
       <section className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-5 xl:grid-cols-3 border-b mb-10">
         {/* Section for Image, Review, Discription, Details, Others About Product Details */}
+
+        {/* LEFT SECTION START */}
         <section className="md:col-span-4 lg:col-span-3 xl:col-span-2 border-r">
           {/* Product Image GALLARY */}
           <div className="relative grid grid-cols-2 sm:grid-cols-2 gap-[0.125rem] xl:gap-1">
@@ -65,9 +67,12 @@ export default function SingleProduct() {
             )}
           </div>
         </section>
+        {/* LEFT SECTION END */}
 
         {/* Section for `Product Name, category, prices, color, size, Add to cart etc.` */}
-        <section className="md:col-span-3 lg:col-span-2 xl:col-span-1 flex flex-col gap-3 md:gap-6 md:px-6 py-6 md:sticky top-0  h-max">
+
+        {/* RIGHT SECTION START */}
+        <section className="md:col-span-3 lg:col-span-2 xl:col-span-1 flex flex-col gap-3 md:gap-6 md:px-6 py-6 md:sticky top-0 h-max">
           {/* Product Name, Price, Short-Desc */}
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl font-semibold">{productName}</h1>
@@ -129,6 +134,7 @@ export default function SingleProduct() {
             </button> */}
           </div>
         </section>
+        {/* RIGHT SECTION END */}
       </section>
     </div>
   );
