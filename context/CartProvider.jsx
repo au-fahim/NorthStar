@@ -19,6 +19,10 @@ const cartReducer = (state, action) => {
     let updatedTotalSalePrice =
       state.totalSalePrice + action.product.salePrice * action.product.quantity;
 
+    let updatedTotalRegularPrice =
+      state.totalRegularPrice +
+      action.product.regularPrice * action.product.quantity;
+
     /* :: Select Existing Cart Product :: 
         <> if user selected product is Already have in the Cart */
 
@@ -52,6 +56,7 @@ const cartReducer = (state, action) => {
     return {
       products: updatedProducts,
       totalSalePrice: updatedTotalSalePrice,
+      totalRegularPrice: updatedTotalRegularPrice,
       lastAddedProduct: action.product,
       isCartModalShow: true,
     };
@@ -68,15 +73,25 @@ const cartReducer = (state, action) => {
       (product) => product.id !== action.id
     );
 
-    const existingProductPrice =
+    // :: Existing Product Total Sale Price ::
+    const extPdtTotalSalePrice =
       existingProduct.salePrice * existingProduct.quantity;
 
     // :: Update The Total Sale Price ::
-    const updatedTotalSalePrice = state.totalSalePrice - existingProductPrice;
+    const updatedTotalSalePrice = state.totalSalePrice - extPdtTotalSalePrice;
+
+    // :: Existing Product Total Regular Price ::
+    const extPdtTotalRegPrice =
+      existingProduct.salePrice * existingProduct.quantity;
+
+    // :: Update The Total Regular Price ::
+    const updatedTotalRegularPrice =
+      state.totalRegularPrice - extPdtTotalRegPrice;
 
     return {
       products: updatedProducts,
       totalSalePrice: updatedTotalSalePrice,
+      totalRegularPrice: updatedTotalRegularPrice,
     };
   }
 
@@ -120,8 +135,13 @@ export default function CartProvider({ children }) {
   };
 
   // :: Destructuring --> `cartState` ::
-  let { products, totalSalePrice, isCartModalShow, lastAddedProduct } =
-    cartState;
+  let {
+    products,
+    totalRegularPrice,
+    totalSalePrice,
+    isCartModalShow,
+    lastAddedProduct,
+  } = cartState;
 
   /* :: Disable Scrolling in Root Div :: 
       <> When Cart Modal is Active on screen */
@@ -139,7 +159,7 @@ export default function CartProvider({ children }) {
     totalVat: 0,
     totalPrice: 0,
     totalSalePrice,
-    totalRegularPrice: 0,
+    totalRegularPrice,
     lastAddedProduct,
     isCartModalShow,
     closeCartModal,

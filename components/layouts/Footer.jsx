@@ -14,7 +14,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-2 justify-between py-6 md:py-10 border-b border-slate-300">
             {/* Application Logo & Short Intro */}
             <div className="col-span-2 flex flex-col gap-4 items-start pb-3 md:pb-0 md:pr-8">
+              {/* APPLICATION LOGO */}
               <img src={logo} alt="North Star" />
+
               <p className="text-gray-500">
                 Specializes in providing high-quality stylish products for your
                 wardrobe

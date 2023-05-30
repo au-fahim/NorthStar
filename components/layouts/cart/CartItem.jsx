@@ -91,7 +91,7 @@ export default function CartItem({ product }) {
                   (${salePrice} x {quantity})
                 </span>{" "}
               </span>
-              <strong className="text-xs sm:text-base md:text-lg lg:text-xl">
+              <strong className="text-sm md:text-lg lg:text-xl">
                 ${salePrice * quantity}
               </strong>
             </p>
