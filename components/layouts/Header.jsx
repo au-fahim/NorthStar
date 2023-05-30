@@ -41,7 +41,7 @@ export default function Header(props) {
 
   return (
     <header
-      className={`w-full py-2 sm:py-6 bg-white z-20 sticky top-0 transition-transform duration-300 ${showHeader}`}>
+      className={`w-full py-4 sm:py-6 bg-white z-20 sticky top-0 transition-transform duration-300 ${showHeader}`}>
       <div className="main-wrapper">
         <header className="flex flex-row justify-between items-center">
           {/* Logo & Left Menu Button */}
