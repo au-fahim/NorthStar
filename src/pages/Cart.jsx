@@ -96,6 +96,17 @@ export default function Cart() {
                     </Link>
                   </p>
                 </div>
+
+                {/* ACCEPTED PAYMENT METHODS */}
+                <div className="flex flex-col gap-2 md:gap-4 pt-6 pb-2 md:py-8">
+                  <h1 className="text-sm md:text-base uppercase font-medium">
+                    ACCEPTED PAYMENT METHODS
+                  </h1>
+                  <img
+                    src="/payment_icons/group_payment_methods.webp"
+                    alt="Payment Methods"
+                  />
+                </div>
               </section>
               {/* ORDER SUMMERY SECTION END */}
             </div>
