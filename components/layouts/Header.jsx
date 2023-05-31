@@ -14,10 +14,10 @@ export default function Header(props) {
 
   const headerControl = () => {
     if (window.scrollY > 100) {
-      if (window.scrollY >= lastScrollY) {
-        setShowHeader("-translate-y-[88px]");
+      if (window.scrollY > lastScrollY) {
+        setShowHeader("-translate-y-24");
       } else {
-        setShowHeader("shadow-sm border-b translate-y-0");
+        setShowHeader("translate-y-0 shadow-sm border-b");
       }
     } else {
       setShowHeader("translate-y-0");
@@ -32,7 +32,7 @@ export default function Header(props) {
     };
   }, [lastScrollY]);
 
-  const numberOfCartItems = cartData?.products?.reduce(
+  const numberOfCartItems = cartData?.products.reduce(
     (currentQuantity, product) => {
       return currentQuantity + product.quantity;
     },

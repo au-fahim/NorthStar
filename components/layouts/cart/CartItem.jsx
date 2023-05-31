@@ -15,6 +15,7 @@ export default function CartItem({ product }) {
     salePrice,
     regularPrice,
     quantity,
+    stock,
   } = product;
 
   // Callback Function For Removeing Product From Cart
@@ -26,7 +27,7 @@ export default function CartItem({ product }) {
       <div className="flex flex-row border rounded hover:border-slate-400 overflow-hidden transition group">
         {/* Product Image */}
         <Link to={`/products/${id}`}>
-          <img src={images[0]} alt="" className="w-24 md:w-48" />
+          <img src={images[0]} alt="Product Image" className="w-24 md:w-48" />
         </Link>
 
         {/* Product Details */}
@@ -70,14 +71,22 @@ export default function CartItem({ product }) {
           <div className="flex flex-row justify-between items-center md:py-2 text-xs md:text-base">
             <div className="flex flex-row gap-1 items-end">
               <p>Quantity:</p>
-              <select className="min-w-max" value={quantity}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
+              <select
+                className="min-w-max"
+                value={quantity}
+                onChange={(e) => {
+                  cartData.updateQuantityFunc(product, +e.target.value);
+                }}>
+                {/* QUANTITY OPTIONS */}
+                {Array.from({ length: stock }, (_, index) => index + 1).map(
+                  (item, index) => {
+                    return (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    );
+                  }
+                )}
               </select>
             </div>
 

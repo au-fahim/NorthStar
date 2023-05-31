@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 
@@ -8,6 +8,7 @@ import { CartContext } from "../../context/CartContext";
 export default function SingleProduct() {
   const [allImageShow, setAllImageShow] = useState(false);
   const [showMoreBtn, setShowMoreBtn] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(false);
 
   const cartData = useContext(CartContext);
 
@@ -16,7 +17,7 @@ export default function SingleProduct() {
   // Gatting the clicked product data
   const product = products.filter((item) => item.id === +id);
 
-  const { productName, productTitle, images, salePrice, regularPrice } =
+  const { productName, productTitle, images, salePrice, regularPrice, stock } =
     product[0];
 
   // Render All Product Images
@@ -26,7 +27,7 @@ export default function SingleProduct() {
     </div>
   ));
 
-  // 4 images show initialy
+  // DISPLAY 4 IMAGE INITIALY
   let filterProductImages;
 
   function productImgFilterFunc() {
@@ -42,6 +43,10 @@ export default function SingleProduct() {
   }
 
   productImgFilterFunc();
+
+  const isCartedProduct = cartData.products?.find(
+    (p) => p.id === product[0].id
+  );
 
   // Add to Cart Function
   const addToCartFunc = () => {
@@ -116,12 +121,29 @@ export default function SingleProduct() {
 
           {/* Add To Cart Button */}
           <div className="flex flex-col xl:flex-row justify-between gap-2 my-3">
-            <button
-              onClick={addToCartFunc}
-              className="button btn_with_icon group bg-slate-900 text-white hover:text-slate-700 active:scale-95 border hover:bg-slate-100 hover:border-slate-300 active:border-slate-700">
-              <span>Add to Cart</span>
-              <BiCartAdd className="icon fill-white group-hover:fill-slate-700" />
-            </button>
+            {/* ERROR MESSAGE CONTAINER START */}
+            {isCartedProduct?.quantity >= stock && (
+              <p className="text-red-600 text-sm md:text-base">
+                This Product is Out of Stock
+              </p>
+            )}
+            {/* ERROR MESSAGE CONTAINER END */}
+
+            {isCartedProduct?.quantity >= stock ? (
+              <></>
+            ) : (
+              <button
+                onClick={addToCartFunc}
+                disabled={isCartedProduct?.quantity >= stock ? true : false}
+                className={`button btn_with_icon group bg-slate-900 text-white hover:text-slate-700 active:scale-95 border hover:bg-slate-100 hover:border-slate-300 active:border-slate-700 ${
+                  isCartedProduct?.quantity >= stock
+                    ? "cursor-not-allowed active:scale-100 active:border-red-600"
+                    : ""
+                }`}>
+                <span>Add to Cart</span>
+                <BiCartAdd className="icon fill-white group-hover:fill-slate-700" />
+              </button>
+            )}
 
             {/* Add To Wishlist Button */}
             <button className="button btn_with_icon group text-slate-700 border hover:bg-slate-100 hover:border-slate-300 active:scale-95 active:border-slate-700">

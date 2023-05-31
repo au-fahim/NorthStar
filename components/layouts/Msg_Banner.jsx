@@ -5,8 +5,6 @@ import { IoCloseOutline } from "react-icons/io5";
 export default function MsgBanner() {
   const [showBannerMsg, setShowBannerMsg] = useState(true);
 
-  useEffect(() => {}, []);
-
   return (
     <>
       {showBannerMsg && (
@@ -21,7 +19,7 @@ export default function MsgBanner() {
                   Sign up now
                 </a>
               </article>
-              <button onClick={() => setShowBannerMsg(!showBannerMsg)}>
+              <button onClick={() => setShowBannerMsg((prev) => !prev)}>
                 <IoCloseOutline className="float-right text-xl sm:text-2xl sm:mr-2" />
               </button>
             </div>

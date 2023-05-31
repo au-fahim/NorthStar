@@ -1,13 +1,11 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
 import { CartContext } from "./CartContext";
-import { useLocation } from "react-router-dom";
 
 // ░░░░░░░░░░░░░░░░░░░░░ Initial Cart Products State ░░░░░░░░░░░░░░░░░░░░░
 const initialCartState = {
   products: [],
   totalVat: 0,
-  totalPrice: 0,
   totalSalePrice: 0,
   totalRegularPrice: 0,
   lastAddedProduct: {},
@@ -15,6 +13,7 @@ const initialCartState = {
 };
 
 const cartReducer = (state, action) => {
+  // ADD TO CART FUNCTION START
   if (action.type === "add_to_cart") {
     let updatedTotalSalePrice =
       state.totalSalePrice + action.product.salePrice * action.product.quantity;
@@ -32,25 +31,33 @@ const cartReducer = (state, action) => {
     const existingProduct = state.products[existingProductIndex];
 
     let updatedProducts;
+    let cartModalShow;
 
     /* :: If `User Given` Product is Already have in the Cart, ::
         <> Then, Update The Quantity of the Product. 
         <> Else, Add the `Given Product` To the Products State */
 
     if (existingProduct) {
-      // :: Updating the product quantity ::
-      const updatedProduct = {
-        ...existingProduct,
-        quantity: existingProduct.quantity + action.product.quantity,
-      };
+      if (existingProduct.quantity < action.product.stock) {
+        // :: Updating the product quantity ::
+        const updatedProduct = {
+          ...existingProduct,
+          quantity: existingProduct.quantity + action.product.quantity,
+        };
 
-      // :: Store available Cart Items --> in `updateProducts` variable ::
-      updatedProducts = [...state.products];
+        // :: Store available Cart Items --> in `updateProducts` variable ::
+        updatedProducts = [...state.products];
 
-      // :: Update the `Quantity Updated Product` --> from Products State ::
-      updatedProducts[existingProductIndex] = updatedProduct;
+        // :: Update the `Quantity Updated Product` --> from Products State ::
+        updatedProducts[existingProductIndex] = updatedProduct;
+        cartModalShow = true;
+      } else {
+        updatedProducts = [...state.products];
+        cartModalShow = false;
+      }
     } else {
       updatedProducts = state.products.concat(action.product);
+      cartModalShow = true;
     }
 
     return {
@@ -58,10 +65,12 @@ const cartReducer = (state, action) => {
       totalSalePrice: updatedTotalSalePrice,
       totalRegularPrice: updatedTotalRegularPrice,
       lastAddedProduct: action.product,
-      isCartModalShow: true,
+      isCartModalShow: cartModalShow,
     };
   }
+  // ADD TO CART FUNCTION END
 
+  // REMOVE FROM CART FUNCTION START
   if (action.type === "remove_from_cart") {
     // :: Selecting Existing Cart Product ::
     const existingProductIndex = state.products.findIndex(
@@ -82,25 +91,77 @@ const cartReducer = (state, action) => {
 
     // :: Existing Product Total Regular Price ::
     const extPdtTotalRegPrice =
-      existingProduct.salePrice * existingProduct.quantity;
+      existingProduct.regularPrice * existingProduct.quantity;
 
     // :: Update The Total Regular Price ::
     const updatedTotalRegularPrice =
       state.totalRegularPrice - extPdtTotalRegPrice;
 
     return {
+      ...state,
       products: updatedProducts,
       totalSalePrice: updatedTotalSalePrice,
       totalRegularPrice: updatedTotalRegularPrice,
     };
   }
+  // REMOVE FROM CART FUNCTION END
 
+  // CLOSE CART MODAL FUNCTION START
   if (action.type === "close_cart_modal") {
     return {
       ...state,
       isCartModalShow: false,
     };
   }
+  // CLOSE CART MODAL FUNCTION END
+
+  // QUANTITY UPDATE FUNCTION START
+  if (action.type === "update_quantity") {
+    // SELECT THE EXISTING PRODUCT_INDEX & PRODUCT
+    const index = state.products.findIndex(
+      (product) => product.id === action.product.id
+    );
+    const existingProduct = state.products[index];
+
+    // UPDATE THE SELECTED PRODCUT QUANTITY
+    const updatedProduct = {
+      ...existingProduct,
+      quantity: action.quantity,
+    };
+
+    // UPDATE THE PRODUCTS LIST FROM CART_STATE
+    let updatedProducts = [...state.products];
+    updatedProducts[index] = updatedProduct;
+
+    // UPDATE THE TOTAL_SALE_PRICE
+    const singleProductSalePrice = updatedProducts.map((product) => {
+      return product.salePrice * product.quantity;
+    });
+
+    const newTotalSalePrice = singleProductSalePrice.reduce((prev, curr) => {
+      return prev + curr;
+    }, 0);
+
+    // UPDATE THE TOTAL_REGULAR_PRICE
+    const singleProductRegularPrice = updatedProducts.map((product) => {
+      return product.regularPrice * product.quantity;
+    });
+
+    const newTotalRegularPrice = singleProductRegularPrice.reduce(
+      (prev, curr) => {
+        return prev + curr;
+      },
+      0
+    );
+
+    return {
+      ...state,
+      products: updatedProducts,
+      totalSalePrice: newTotalSalePrice,
+      totalRegularPrice: newTotalRegularPrice,
+    };
+  }
+  // QUANTITY UPDATE FUNCTION END
 
   return initialCartState;
 };
@@ -108,12 +169,6 @@ const cartReducer = (state, action) => {
 // ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ CartProvider Component ░ ░ ░ ░ ░ ░ ░ ░ ░ ░
 
 export default function CartProvider({ children }) {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     initialCartState
@@ -132,6 +187,11 @@ export default function CartProvider({ children }) {
   // Closing Cart Modal
   const closeCartModal = () => {
     dispatchCartAction({ type: "close_cart_modal" });
+  };
+
+  // UPDATE CART PRODUCT QUANTITY
+  const updateQuantityFunc = (product, quantity) => {
+    dispatchCartAction({ type: "update_quantity", product, quantity });
   };
 
   // :: Destructuring --> `cartState` ::
@@ -165,6 +225,7 @@ export default function CartProvider({ children }) {
     closeCartModal,
     addToCartFunc,
     removeFromCartFunc,
+    updateQuantityFunc,
   };
 
   return (
