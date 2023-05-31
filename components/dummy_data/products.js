@@ -11,6 +11,7 @@ export const products = [
     ],
     salePrice: 80,
     regularPrice: 100,
+    stock: 4,
   },
   {
     id: 11,
@@ -25,6 +26,7 @@ export const products = [
     ],
     salePrice: 443,
     regularPrice: 555,
+    stock: 10,
   },
   {
     id: 12,
@@ -33,6 +35,7 @@ export const products = [
     images: ["/products/p_2.3.png", "/products/p_2.2.png"],
     salePrice: 80,
     regularPrice: 100,
+    stock: 3,
   },
   {
     id: 13,
@@ -41,6 +44,7 @@ export const products = [
     images: ["/products/p_2.4.png", "/products/p_2.2.png"],
     salePrice: 80,
     regularPrice: 100,
+    stock: 2,
   },
   {
     id: 14,
@@ -49,6 +53,7 @@ export const products = [
     images: ["/products/p_2.5.png"],
     salePrice: 80,
     regularPrice: 100,
+    stock: 5,
   },
   {
     id: 15,
@@ -57,6 +62,7 @@ export const products = [
     images: ["/products/p_3.1.png", "/products/p_2.2.png"],
     salePrice: 80,
     regularPrice: 100,
+    stock: 4,
   },
   {
     id: 16,
@@ -65,6 +71,7 @@ export const products = [
     images: ["/products/p_3.2.png", "/products/p_2.2.png"],
     salePrice: 80,
     regularPrice: 100,
+    stock: 4,
   },
   {
     id: 17,
@@ -77,6 +84,7 @@ export const products = [
     ],
     salePrice: 80,
     regularPrice: 100,
+    stock: 4,
   },
 ];
 

@@ -10,11 +10,11 @@ export default function Cart() {
 
   const { products, totalRegularPrice, totalSalePrice, totalVat } = cartData;
 
-  const totalItems = products?.reduce((currentQuantity, product) => {
+  const totalItems = products.reduce((currentQuantity, product) => {
     return currentQuantity + product.quantity;
   }, 0);
 
-  const cartItems = products?.map((product, index) => (
+  const cartItems = products.map((product, index) => (
     <CartItem key={index} product={product} />
   ));
 
@@ -56,18 +56,20 @@ export default function Cart() {
                 <strong className="text-base lg:text-lg xl:text-xl uppercase">
                   ORDER SUMMARY
                 </strong>
+
                 <ul className="orderSummery--list">
                   <li>
                     <span>{totalItems} items</span>
-                    <span>${totalSalePrice}</span>
+                    <span>${totalSalePrice.toFixed(2)}</span>
                   </li>
                   <li>
                     <span>Original price</span>
-                    <span>${totalRegularPrice}</span>
+                    <span>${totalRegularPrice.toFixed(2)}</span>
                   </li>
                   <li>
-                    <span>Sales Tax</span>
-                    <span>{!!totalVat ? `$${totalVat}` : "-"}</span>
+                    <span>Sales VAT</span>
+                    {/* <span>{!!totalVat ? `$${totalVat}` : "-"}</span> */}
+                    <span>${((totalSalePrice / 100) * 2.1).toFixed(2)}</span>
                   </li>
                   <li>
                     <span>Delivery</span>
@@ -77,7 +79,11 @@ export default function Cart() {
 
                 {/* TOTAL PRICE */}
                 <strong className="flex flex-row justify-between items-center py-2 md:py-4 text-lg">
-                  <span>Total</span> <span>${totalSalePrice}</span>
+                  <span>Total</span>{" "}
+                  <span>
+                    $
+                    {(totalSalePrice + (totalSalePrice / 100) * 2.1).toFixed(2)}
+                  </span>
                 </strong>
 
                 {/* CHECKOUT BUTTON */}
@@ -102,6 +108,7 @@ export default function Cart() {
                   <h1 className="text-sm md:text-base uppercase font-medium">
                     ACCEPTED PAYMENT METHODS
                   </h1>
+
                   <img
                     src="/payment_icons/group_payment_methods.webp"
                     alt="Payment Methods"
@@ -117,6 +124,7 @@ export default function Cart() {
             <div className="max-w-[15rem]">
               <img src="/empty_cart.svg" alt="Empty Cart" />
             </div>
+
             <div className="flex flex-col gap-2 sm:gap-4 lg:gap-6 text-center">
               <strong className="text-lg sm:text-2xl lg:text-3xl">
                 Your cart is empty
@@ -126,9 +134,12 @@ export default function Cart() {
                 <p>Go ahead and explore top categories.</p>
               </span>
             </div>
-            <button className="button primary-btn max-w-xs">
-              <Link to="/">Continue Shopping</Link>
-            </button>
+
+            <Link to="/">
+              <button className="button primary-btn max-w-xs">
+                Continue Shopping
+              </button>
+            </Link>
           </section>
           // EMPTY CART SECTION END
         )}
