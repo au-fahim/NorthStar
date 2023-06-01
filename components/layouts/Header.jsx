@@ -43,26 +43,34 @@ export default function Header(props) {
     <header
       className={`w-full py-4 sm:py-6 bg-white z-20 sticky top-0 transition-transform duration-300 ${showHeader}`}>
       <div className="main-wrapper">
-        <header className="flex flex-row justify-between items-center">
-          {/* Logo & Left Menu Button */}
+        <header className="flex flex-row justify-between items-center gap-1 sm:gap-0">
+          {/* LOGO & LEFT MENU SHOW BUTTON */}
           <div className="flex flex-row gap-2 md:gap-3 items-center">
-            {/* Left Menu */}
-            <button className="btn-icon lg:hidden">
+            {/* LEFT MENU SHOW BUTTON */}
+            <button
+              onClick={props.showLeftMenuFunc}
+              className="btn-icon lg:hidden border border-slate-100">
               <CiMenuBurger className="icon" />
             </button>
 
-            {/* Logo */}
-            <div className="w-28 sm:w-40 xl:w-auto">
-              <img src={logo} alt="Norht Star" />
-            </div>
+            {/* LOGO */}
+            <Link to="/" className="hidden sm:block ">
+              <div className="w-28 sm:w-40 xl:w-auto">
+                <img src={logo} alt="Norht Star" />
+              </div>
+            </Link>
           </div>
 
           {/* Top Navigation menu */}
-          <Nav />
+          <Nav
+            styleType={"topMenuNav"}
+            subMenuStyle={"topNestedMenu"}
+            lastScrollY={lastScrollY}
+          />
 
           {/* Header - Search, Cart & User Profile */}
-          <div className="flex flex-row gap-0 sm:gap-2 items-center">
-            {/* Search Component */}
+          <div className="flex flex-row gap-1 sm:gap-2 items-center">
+            {/* SEARCH COMPONENT */}
             <SearchBar />
 
             {/* Cart Button */}

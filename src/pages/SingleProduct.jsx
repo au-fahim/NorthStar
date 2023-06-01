@@ -7,8 +7,6 @@ import { CartContext } from "../../context/CartContext";
 
 export default function SingleProduct() {
   const [allImageShow, setAllImageShow] = useState(false);
-  const [showMoreBtn, setShowMoreBtn] = useState(false);
-  const [disableBtn, setDisableBtn] = useState(false);
 
   const cartData = useContext(CartContext);
 
