@@ -43,7 +43,7 @@ export default function Header(props) {
     <header
       className={`w-full py-4 sm:py-6 bg-white z-20 sticky top-0 transition-transform duration-300 ${showHeader}`}>
       <div className="main-wrapper">
-        <header className="flex flex-row justify-between items-center gap-1 sm:gap-0">
+        <header className="flex flex-row justify-between items-center">
           {/* LOGO & LEFT MENU SHOW BUTTON */}
           <div className="flex flex-row gap-2 md:gap-3 items-center">
             {/* LEFT MENU SHOW BUTTON */}
@@ -54,7 +54,7 @@ export default function Header(props) {
             </button>
 
             {/* LOGO */}
-            <Link to="/" className="hidden sm:block ">
+            <Link to="/">
               <div className="w-28 sm:w-40 xl:w-auto">
                 <img src={logo} alt="Norht Star" />
               </div>
@@ -75,7 +75,7 @@ export default function Header(props) {
 
             {/* Cart Button */}
             <div className="flex flex-row gap-0 sm:gap-2">
-              <Link to={`/cart`}>
+              <Link to="/cart">
                 <button
                   onClick={props.onShowModal}
                   className="btn-icon relative z-20">
