@@ -4,7 +4,7 @@ export default function SearchBar() {
   return (
     <>
       {/* Search Bar */}
-      <div className="hidden flex-row gap-2 items-center py-2 px-2 rounded-md border border-gray-200 bg-slate-50 text-base">
+      <div className="flex sm:hidden flex-row gap-2 items-center py-1 px-3 rounded-full border border-gray-200 min-w-[180px]">
         <CiSearch className="icon icon-gray" />
         <input
           type="text"
@@ -14,7 +14,7 @@ export default function SearchBar() {
       </div>
 
       {/* Search Button */}
-      <button className="btn-icon">
+      <button className="btn-icon hidden md:block">
         <CiSearch className="icon" />
       </button>
     </>

@@ -1,22 +1,61 @@
 import { Link } from "react-router-dom";
+import NavItem from "./NavItem";
 
-export default function Nav() {
+export default function Nav({
+  styleType,
+  subMenuStyle,
+  hideLeftMenuFunc,
+  lastScrollY,
+}) {
   return (
     <>
       <nav>
-        <ul className="hidden lg:flex flex-row gap-6">
+        <ul className={`${styleType}`}>
           <li>
-            <Link to="/">Shop</Link>
+            <Link to="/" onClick={hideLeftMenuFunc}>
+              <span>Shop</span>
+            </Link>
           </li>
+
+          <NavItem
+            menuStyle={subMenuStyle}
+            itemName={"New Arrival"}
+            lastScrollY={lastScrollY}>
+            <li>
+              <Link>New for Man</Link>
+            </li>
+            <li>
+              <Link>Woman Collection</Link>
+            </li>
+            <li>
+              <Link>Kid's</Link>
+            </li>
+          </NavItem>
+
           <li>
-            <a href="/products">New arrival</a>
+            <Link href="/most-wanted">Most wanted</Link>
           </li>
-          <li>
-            <a href="/most-wanted">Most wanted</a>
-          </li>
-          <li>
-            <a href="/brands">Brands</a>
-          </li>
+
+          <NavItem
+            menuStyle={subMenuStyle}
+            itemName={"Brand"}
+            lastScrollY={lastScrollY}>
+            <li>
+              <Link>Brand 01</Link>
+            </li>
+            <li>
+              <Link>Brand 01</Link>
+            </li>
+            <li>
+              <Link>Brand 01</Link>
+            </li>
+            <li>
+              <Link>Brand 01</Link>
+            </li>
+            <li>
+              <Link>Brand 01</Link>
+            </li>
+          </NavItem>
         </ul>
       </nav>
     </>

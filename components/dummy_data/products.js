@@ -64,6 +64,7 @@ export const products = [
     regularPrice: 100,
     stock: 4,
   },
+
   {
     id: 16,
     productName: "Nike Sportswear Club Fleece",
