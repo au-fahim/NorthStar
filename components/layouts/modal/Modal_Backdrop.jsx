@@ -8,7 +8,7 @@ export default function ModalBackdrop({ children, hideLeftMenuFunc }) {
 
   const modalBackdropHandler = () => {
     cartData.closeCartModal();
-    hideLeftMenuFunc();
+    hideLeftMenuFunc && hideLeftMenuFunc();
   };
 
   return (

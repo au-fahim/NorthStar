@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -8,7 +8,7 @@ export default function MsgBanner() {
   return (
     <>
       {showBannerMsg && (
-        <div div className="text-xs sm:text-base bg-slate-900 text-white">
+        <div className="text-xs sm:text-base bg-slate-900 text-white">
           <div className="main-wrapper">
             <div className="flex flex-row items-center justify-between py-2">
               <div></div>
