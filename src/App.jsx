@@ -1,22 +1,26 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 
-// Custom Components
-import CartModal from "../../components/layouts/cart/CartModal";
-import { CartContext } from "../../context/CartContext";
-import MsgBanner from "../../components/layouts/Msg_Banner";
-import Header from "../../components/layouts/Header";
+// CONTEXT
+import { CartContext } from "./context/CartContext";
 
-// Pages
-import Home from "./Home";
-import SingleProduct from "./SingleProduct";
-import Cart from "./Cart";
-import Footer from "../../components/layouts/Footer";
-import LeftNavModal from "../../components/layouts/modal/LeftNavModal";
+// CUSTOM COMPONENTS
+import Header from "./components/Header";
+import SingleProduct from "./pages/SingleProduct";
+import MsgBanner from "./components/banner/Msg_Banner";
+import CartModal from "./components/cart/CartModal";
+import LeftNavModal from "./components/modal/LeftNavModal";
+
+// PAGES &
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Footer from "./components/Footer";
 
 function App() {
+  // LEFT NAVIGATION MENU SHOW HIDE STATE
   const [leftNavOpen, setLeftNavOpen] = useState(false);
 
+  // LEFT NAVIGATION MENU SHOW HIDE FUNCTION
   const showLeftMenuFunc = () => {
     setLeftNavOpen(true);
   };
@@ -35,7 +39,7 @@ function App() {
 
   return (
     <>
-      {/* Modal Show or Hide */}
+      {/* :: SUCCESSFULLY ADDED TO CART :: MESSAGE MODAL */}
       {cartData.isCartModalShow && <CartModal />}
 
       {/* LEFT NAVIGATION MENU */}
@@ -46,20 +50,20 @@ function App() {
         />
       )}
 
-      {/* Top Banner Component */}
+      {/* TOP SMALL BANNER COMPONENT */}
       <MsgBanner />
 
-      {/* Top Header Component */}
+      {/* TOP HEADER COMPONENT */}
       <Header showLeftMenuFunc={showLeftMenuFunc} />
 
-      {/* Routes */}
+      {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
 
-      {/* Footer Component */}
+      {/* FOOTER COMPONENT */}
       <Footer />
     </>
   );

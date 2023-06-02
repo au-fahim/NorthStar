@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { BsStars, BsMinecartLoaded, BsPersonAdd } from "react-icons/bs";
 
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import CenterModal from "../modal/CenterModal";
 
 export default function CartModal({ onHideModal }) {

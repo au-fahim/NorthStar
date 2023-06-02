@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 
-import { products } from "../../components/dummy_data/products";
-import { CartContext } from "../../context/CartContext";
+import { products } from "../assets/dummy_data/products";
+import { CartContext } from "../context/CartContext";
 
 export default function SingleProduct() {
   const [allImageShow, setAllImageShow] = useState(false);

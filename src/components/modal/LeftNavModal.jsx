@@ -1,4 +1,4 @@
-import Nav from "../Nav";
+import Nav from "../nav/Nav";
 import ModalBackdrop from "./Modal_Backdrop";
 import { IoCloseOutline } from "react-icons/io5";
 

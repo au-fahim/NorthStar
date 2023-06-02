@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi2";
 
-import { CartContext } from "./../../context/CartContext";
-import CartItem from "../../components/layouts/cart/CartItem";
+import { CartContext } from "../context/CartContext";
+import CartItem from "../components/cart/CartItem";
 
 export default function Cart() {
   const cartData = useContext(CartContext);
