@@ -20,7 +20,8 @@ export default function Nav({
           <NavItem
             menuStyle={subMenuStyle}
             itemName={"New Arrival"}
-            lastScrollY={lastScrollY}>
+            lastScrollY={lastScrollY}
+          >
             <li>
               <Link>New for Man</Link>
             </li>
@@ -44,16 +45,16 @@ export default function Nav({
               <Link>Brand 01</Link>
             </li>
             <li>
-              <Link>Brand 01</Link>
+              <Link>Brand 02</Link>
             </li>
             <li>
-              <Link>Brand 01</Link>
+              <Link>Brand 03</Link>
             </li>
             <li>
-              <Link>Brand 01</Link>
+              <Link>Brand 04</Link>
             </li>
             <li>
-              <Link>Brand 01</Link>
+              <Link>Brand 05</Link>
             </li>
           </NavItem>
         </ul>
