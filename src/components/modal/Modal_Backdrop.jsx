@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import ReactDOM from "react-dom";
 
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 
 export default function ModalBackdrop({ children, hideLeftMenuFunc }) {
   const cartData = useContext(CartContext);
 
   const modalBackdropHandler = () => {
     cartData.closeCartModal();
-    hideLeftMenuFunc();
+    hideLeftMenuFunc && hideLeftMenuFunc();
   };
 
   return (

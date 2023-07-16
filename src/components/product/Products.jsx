@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { products } from "../../components/dummy_data/products";
-import ProductCard from "../../components/layouts/product/ProductCard";
+import { products } from "../../assets/dummy_data/products";
+import ProductCard from "./ProductCard";
 
 export default function Products() {
   const productData = products.map((product, index) => (

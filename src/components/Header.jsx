@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CiShoppingCart, CiUser, CiMenuBurger } from "react-icons/ci";
 
-import Nav from "./Nav";
+import Nav from "./nav/Nav";
 import logo from "/North_Star.png";
-import SearchBar from "../ui/Search_bar";
-import { CartContext } from "../../context/CartContext";
+import SearchBar from "../../src/components/ui/Search_bar";
+import { CartContext } from "../context/CartContext";
 
 export default function Header(props) {
   const [showHeader, setShowHeader] = useState("translate-y-0");
